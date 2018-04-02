@@ -49,6 +49,7 @@ public class ItemController {
 	
 	/**
 	 * 商品编辑(未完成 还有bug  数据显示不出来   EasyUI的格式还没弄明白)
+	 * 
 	 */
 	@RequestMapping(value="/rest/item/query/item/desc/{id}")
 	@ResponseBody
