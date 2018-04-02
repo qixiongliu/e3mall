@@ -10,4 +10,8 @@ public interface ItemService {
 	public E3Result addItem(TbItem item, String desc);
 	public E3Result getEditItemById(long id);
 	public E3Result getEditItemDescById(long id);
+	public E3Result editItem(TbItem item, String desc);
+	public E3Result deleteItems(String ids);
+	public E3Result backOrderItems(String ids);
+	public E3Result newStockItems(String ids);
 }

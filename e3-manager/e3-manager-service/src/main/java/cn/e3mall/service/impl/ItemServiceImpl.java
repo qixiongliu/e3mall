@@ -87,17 +87,90 @@ public class ItemServiceImpl implements ItemService {
 		// 7、E3Result.ok()
 		return E3Result.ok();
 	}
-
+	
+	/**
+	 * 商品编辑
+	 * 得到编辑商品的信息
+	 */
 	@Override
 	public E3Result getEditItemById(long id) {
 		TbItem item = tbItemMapper.selectByPrimaryKey(id);
 		return E3Result.ok(item);
 	}
-
+	
+	/**
+	 * 商品编辑
+	 * 得到编辑商品的desc
+	 */
 	@Override
 	public E3Result getEditItemDescById(long id) {
 		TbItemDesc itemDesc = tbItemDescMapper.selectByPrimaryKey(id);
 		return E3Result.ok(itemDesc);
+	}
+	
+	/**
+	 * 商品编辑
+	 * submit编辑后的商品
+	 */
+	@Override
+	public E3Result editItem(TbItem item, String desc) {
+		TbItem originItem = tbItemMapper.selectByPrimaryKey(item.getId());
+		// 补全信息
+		Date date = new Date();
+		item.setUpdated(date);
+		item.setCreated(originItem.getCreated());
+		//商品状态，1-正常，2-下架，3-删除
+		item.setStatus((byte) 1);
+		tbItemMapper.updateByPrimaryKey(item);
+		TbItemDesc itemDesc = tbItemDescMapper.selectByPrimaryKey(item.getId());
+		itemDesc.setItemDesc(desc);
+		itemDesc.setUpdated(date);
+		tbItemDescMapper.updateByPrimaryKeySelective(itemDesc);
+		return E3Result.ok();
+	}
+	
+	/**
+	 * 删除选定的商品
+	 */
+	@Override
+	public E3Result deleteItems(String ids) {
+		// 去除商品ID数组
+		String[] idsArray = ids.split(",");
+		for (String id: idsArray) {
+			tbItemMapper.deleteByPrimaryKey(Long.parseLong(id));
+			tbItemDescMapper.deleteByPrimaryKey(Long.parseLong(id));
+		}
+		return E3Result.ok();
+	}
+	
+	/**
+	 * 下架商品
+	 */
+	@Override
+	public E3Result backOrderItems(String ids) {
+		String[] idsArray = ids.split(",");
+		for (String id: idsArray) {
+			TbItem tbItem = tbItemMapper.selectByPrimaryKey(Long.parseLong(id));
+			//商品状态，1-正常，2-下架，3-删除
+			tbItem.setStatus((byte) 2);
+			tbItemMapper.updateByPrimaryKey(tbItem);
+		}
+		return E3Result.ok();
+	}
+	
+	/**
+	 * 上架商品
+	 */
+	@Override
+	public E3Result newStockItems(String ids) {
+		String[] idsArray = ids.split(",");
+		for (String id: idsArray) {
+			TbItem tbItem = tbItemMapper.selectByPrimaryKey(Long.parseLong(id));
+			//商品状态，1-正常，2-下架，3-删除
+			tbItem.setStatus((byte) 1);
+			tbItemMapper.updateByPrimaryKey(tbItem);
+		}
+		return E3Result.ok();
 	}
 	
 }
