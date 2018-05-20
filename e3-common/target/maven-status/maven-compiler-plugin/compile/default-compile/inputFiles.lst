@@ -1,6 +1,9 @@
 /Users/qixiongliu/git_repository/e3mall/e3-common/src/main/java/cn/e3mall/common/utils/JsonUtils.java
+/Users/qixiongliu/git_repository/e3mall/e3-common/src/main/java/cn/e3mall/common/jedis/JedisClientCluster.java
 /Users/qixiongliu/git_repository/e3mall/e3-common/src/main/java/cn/e3mall/common/pojo/EasyUITreeNode.java
 /Users/qixiongliu/git_repository/e3mall/e3-common/src/main/java/cn/e3mall/common/utils/FastDFSClient.java
 /Users/qixiongliu/git_repository/e3mall/e3-common/src/main/java/cn/e3mall/common/pojo/EasyUIDataGridResult.java
+/Users/qixiongliu/git_repository/e3mall/e3-common/src/main/java/cn/e3mall/common/jedis/JedisClient.java
+/Users/qixiongliu/git_repository/e3mall/e3-common/src/main/java/cn/e3mall/common/jedis/JedisClientPool.java
 /Users/qixiongliu/git_repository/e3mall/e3-common/src/main/java/cn/e3mall/common/utils/E3Result.java
 /Users/qixiongliu/git_repository/e3mall/e3-common/src/main/java/cn/e3mall/common/utils/IDUtils.java
